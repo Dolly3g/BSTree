@@ -51,3 +51,28 @@ void test_insert_expands_the_tree_even_bigger(){
 	assertEqual(insert(&tree,9),5);
 	assertEqual(tree.root->left->right->data,9);
 }
+
+void test_find_finds_you_a_node_containing_that_data (){
+	BSTree tree = createBSTree();
+	Node* n;
+	insert(&tree,10);
+	insert(&tree,11);
+	insert(&tree,9);
+	insert(&tree,8);
+	insert(&tree,12);
+	n = find(tree,8);
+	assertEqual(n->data,8);
+	n = find(tree,12);
+	assertEqual(n->data,12);
+}
+
+void test_find_finds_you_the_first_node_containing_that_data (){
+	BSTree tree = createBSTree();
+	Node* n;
+	insert(&tree,10);
+	insert(&tree,11);
+	insert(&tree,12);
+	insert(&tree,12);
+	n = find(tree,12);
+	assertEqual(n->data,12);
+}

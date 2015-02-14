@@ -18,14 +18,20 @@ void addNode(Node** n,int data){
 		*n = createNode(data);
 		return;
 	}
-
-	if(data <= (*n)->data)
-		addNode(&((*n)->left),data);
-	else
-		addNode(&((*n)->right),data);
+	data <= (*n)->data ? addNode(&((*n)->left),data) : addNode(&((*n)->right),data);
 };
 
 int insert(BSTree* tree, int data){
 	addNode(&tree->root,data);
 	return ++tree->count;
+}
+
+Node* find(BSTree tree, int data){
+	Node* walker = tree.root;
+	while(walker != 0){
+		if(data == walker->data)
+			return walker;
+		walker = data < walker->data ? walker->left : walker->right;
+	}
+	return 0;
 }
