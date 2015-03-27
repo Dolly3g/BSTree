@@ -76,3 +76,36 @@ void test_find_finds_you_the_first_node_containing_that_data (){
 	n = find(tree,12);
 	assertEqual(n->data,12);
 }
+
+void test_delete_deletes_the_leaf_node_the_tree_with_given_data(){
+	BSTree tree = createBSTree();
+	Node* n;
+	insert(&tree,10);
+	insert(&tree,11);
+	insert(&tree,9);
+	n = deleteNode(&tree,9);
+	assertEqual(n->data, 9);
+	assertEqual((int)tree.root->left, 0);
+}
+
+void test_delete_deletes_the_node_with_1_right_child_from_the_tree_with_given_data(){
+	BSTree tree = createBSTree();
+	Node* n;
+	insert(&tree,10);
+	insert(&tree,11);
+	insert(&tree,12);
+	n = deleteNode(&tree,11);
+	assertEqual(n->data, 11);
+	assertEqual(tree.root->right->data,12);
+}
+
+void test_delete_deletes_the_node_with_1_left_child_from_the_tree_with_given_data(){
+	BSTree tree = createBSTree();
+	Node* n;
+	insert(&tree,10);
+	insert(&tree,9);
+	insert(&tree,8);
+	n = deleteNode(&tree,9);
+	assertEqual(n->data, 9);
+	assertEqual(tree.root->left->data,8);
+}
